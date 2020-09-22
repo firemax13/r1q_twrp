@@ -1,0 +1,31 @@
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# mount point  fstype device                             device2              flags
+/boot          emmc   /dev/block/bootdevice/by-name/boot
+/cache         ext4   /dev/block/bootdevice/by-name/cache
+/recovery      emmc   /dev/block/bootdevice/by-name/recovery                  flags=backup=1
+
+# System & Vendor
+/system_root   ext4   /dev/block/bootdevice/by-name/system                    flags=display="System"
+/vendor        ext4   /dev/block/bootdevice/by-name/vendor                    flags=display="Vendor";backup=1;wipeingui
+
+/system_image  emmc   /dev/block/bootdevice/by-name/system                    flags=backup=0
+/vendor_image  emmc   /dev/block/bootdevice/by-name/vendor                    flags=backup=1;flashimg=1
+
+# ETC
+/data          ext4   /dev/block/bootdevice/by-name/userdata                  flags=encryptable=footer;length=-16384;fileencryption=ice:aes-256-cts
+/modem         emmc   /dev/block/bootdevice/by-name/modem
+/bluetooth     emmc   /dev/block/bootdevice/by-name/bluetooth                 flags=backup=1;subpartitionof=/modem
+/dsp           emmc   /dev/block/bootdevice/by-name/dsp                       flags=backup=1;subpartitionof=/modem
+/firmware      vfat   /dev/block/bootdevice/by-name/apnhlos                   flags=display="Firmware";fsflags=ro
+/misc          emmc   /dev/block/bootdevice/by-name/misc
+/dtbo          emmc   /dev/block/bootdevice/by-name/dtbo                      flags=display="Dtbo";backup=1;flashimg=1
+/efs           ext4   /dev/block/bootdevice/by-name/sec_efs
+/product       ext4   /dev/block/bootdevice/by-name/product                   flags=display="Product"
+/product_image       ext4   /dev/block/bootdevice/by-name/product                   flags=display="Product";flashimg=1
+
+# Removable storage
+/sdcard        vfat   /dev/block/mmcblk0p1               /dev/block/mmcblk0   flags=fsflags=utf8;flags=display="Micro-SDcard";storage;wipeingui;removable;encryptable=footer;length=-16384
+/usb-otg       vfat   /dev/block/sde1                    /dev/block/sde       flags=fsflags=utf8;flags=display="USB-OTG";storage;wipeingui;removable

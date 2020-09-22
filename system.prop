@@ -1,0 +1,7 @@
+ro.display.series=Samsung A80
+sys.usb.controller=a600000.dwc3
+sys.usb.rndis.func.name=rndis_bam
+sys.usb.rmnet.func.name=rmnet_bam
+persist.sys.isUsbOtgEnabled=true
+ro.boot.bootdevice=1d8400.ufshc
+ro.vendor.build.security_patch=2099-12-31

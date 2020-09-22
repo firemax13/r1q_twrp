@@ -1,0 +1,8 @@
+[
+  {
+    "remote": "github",
+    "repository": "firemax13/GUIDE",
+    "target_path": "device/samsung/r1qGUIDE",
+    "revision": "master"
+  }
+]
